@@ -13,10 +13,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Departamento {
+public class UltimaLocalizacao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-	String nome;
+	String matricula;
+	float ultimaLongitude;
+	float ultimaLatitude;
 }
