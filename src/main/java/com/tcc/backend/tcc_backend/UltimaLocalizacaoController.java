@@ -47,4 +47,23 @@ public class UltimaLocalizacaoController {
 		return repository.save(ultimaLocalizacaoToUpdate);
 	}
 	
+	@GetMapping("/preenchercomdadosiniciais")
+	public void preencherComDadosIniciais() {
+		UltimaLocalizacao ultimaLocalizacao14378 = new UltimaLocalizacao();
+		UltimaLocalizacao ultimaLocalizacao13912 = new UltimaLocalizacao();
+		
+		ultimaLocalizacao14378.setMatricula("14378");
+		ultimaLocalizacao14378.setUltimaLongitude(-47.016076);
+		ultimaLocalizacao14378.setUltimaLatitude(-22.718027);
+		ultimaLocalizacao13912.setMatricula("13912");
+		ultimaLocalizacao13912.setUltimaLongitude(-47.016451);
+		ultimaLocalizacao13912.setUltimaLatitude(-22.717668);
+		
+		repository.save(ultimaLocalizacao14378);
+		repository.save(ultimaLocalizacao13912);
+		
+		repository.deleteAll();
+		
+	}
+	
 }

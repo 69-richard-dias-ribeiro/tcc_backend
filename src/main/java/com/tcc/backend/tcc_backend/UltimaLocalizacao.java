@@ -19,6 +19,6 @@ public class UltimaLocalizacao {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	String matricula;
-	float ultimaLongitude;
-	float ultimaLatitude;
+	double ultimaLongitude;
+	double ultimaLatitude;
 }
