@@ -39,16 +39,40 @@ public class UltimaLocalizacaoController {
 		repository.deleteById(id);
 	}
 	
-	@PutMapping("/ultimaslocalizacoes/{id}")
-	public UltimaLocalizacao updateUltimaLocalizacao(@PathVariable Long id, @RequestBody UltimaLocalizacao ultimaLocalizacao) {
-		UltimaLocalizacao ultimaLocalizacaoToUpdate = repository.getOne(id);
-		ultimaLocalizacaoToUpdate.setUltimaLongitude(ultimaLocalizacao.getUltimaLatitude());
-		ultimaLocalizacaoToUpdate.setUltimaLatitude(ultimaLocalizacao.getUltimaLatitude());
-		return repository.save(ultimaLocalizacaoToUpdate);
+	@PutMapping("/ultimaslocalizacoes")
+	public UltimaLocalizacao updateUltimaLocalizacao(@RequestBody UltimaLocalizacao ultimaLocalizacao) {
+		// UltimaLocalizacao ultimaLocalizacaoToUpdate = repository.getOne(id);
+		// ultimaLocalizacaoToUpdate.setUltimaLongitude(ultimaLocalizacao.getUltimaLongitude());
+		// ultimaLocalizacaoToUpdate.setUltimaLatitude(ultimaLocalizacao.getUltimaLatitude());
+		// return repository.save(ultimaLocalizacaoToUpdate);
+		
+		//verifica se já existe; se sim, atualiza esse que já existe; se não, cria um novo
+		List<UltimaLocalizacao>localizacoes = repository.findAll();
+		
+		boolean jaExiste = false;
+		UltimaLocalizacao localizacaoJaExistente = null;
+		
+		for (int i = 0; i < localizacoes.size(); i++) {
+			if (localizacoes.get(i).matricula.equals(ultimaLocalizacao.matricula)) {
+				jaExiste = true;
+				localizacaoJaExistente = localizacoes.get(i);
+			}
+		}
+		
+		if (jaExiste) {
+			UltimaLocalizacao ultimaLocalizacaoToUpdate = repository.getOne(localizacaoJaExistente.id);
+			ultimaLocalizacaoToUpdate.setUltimaLongitude(ultimaLocalizacao.getUltimaLongitude());
+			ultimaLocalizacaoToUpdate.setUltimaLatitude(ultimaLocalizacao.getUltimaLatitude());
+			return repository.save(ultimaLocalizacaoToUpdate);
+		} else {
+			return repository.save(ultimaLocalizacao);
+		}
 	}
 	
 	@GetMapping("/preenchercomdadosiniciais")
 	public void preencherComDadosIniciais() {
+		repository.deleteAll();
+		
 		UltimaLocalizacao ultimaLocalizacao14378 = new UltimaLocalizacao();
 		UltimaLocalizacao ultimaLocalizacao13912 = new UltimaLocalizacao();
 		
@@ -61,9 +85,11 @@ public class UltimaLocalizacaoController {
 		
 		repository.save(ultimaLocalizacao14378);
 		repository.save(ultimaLocalizacao13912);
-		
+	}
+	
+	@GetMapping("/limpartodos")
+	public void limparTodos() {
 		repository.deleteAll();
-		
 	}
 	
 }
