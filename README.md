@@ -1,5 +1,6 @@
 # tcc_backend
-REST API consisting of simple endpoints for manipulating employees´ last location´s database table, so that this information is available and accessible at the frontend.
+REST API consisting of simple endpoints for manipulating a last known location database.
+
 - Language: Java
 - Framework: Spring
 - RDBMS: H2 Database
