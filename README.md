@@ -4,9 +4,10 @@ REST API consisting of simple endpoints for manipulating a last known location d
 - Language: Java
 - Framework: Spring
 - RDBMS: H2 Database
-- URL: https://richard-wellington-mavi-api.herokuapp.com/
 
 ## Documentation:
+
+- URL: https://richard-wellington-mavi-api.herokuapp.com/
 
 HTTP Verb     | Endpoint                     | Function                                | Input [example]
 ------------- | -----------------------------|-----------------------------------------|-------------------------------------------------------------|
